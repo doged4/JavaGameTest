@@ -2,13 +2,29 @@ Player meplayer = new Player(200.0,200.0,0.0,0.0);
 //ThingCreated thing = new ThingCreated(meplayer.x, meplayer.y);
 ArrayList<ThingCreated> thingList = new ArrayList<ThingCreated>();
 ArrayList<ThingCreated> deleteGroup = new ArrayList<ThingCreated>();
+Enemy currentEnemy, currentEnemy2, currentEnemy3, currentEnemy4;
 
 void setup(){
   size(600,600);
   System.out.println("INIT");
+  currentEnemy =  new Enemy(200,100);//random(1,500),random(1,500));
+  currentEnemy2 =  new Enemy(240,100);
+  currentEnemy3 =  new Enemy(280,100);
+  currentEnemy4 =  new Enemy(320,100);
 };
 void draw(){
-  background(0,0,0);
+background(0,0,0);
+
+ currentEnemy.display();
+ currentEnemy.update();
+ currentEnemy2.display();
+ currentEnemy2.update();
+ currentEnemy3.display();
+ currentEnemy3.update();
+ currentEnemy4.display();
+ currentEnemy4.update();
+ 
+  
   for(ThingCreated thing : thingList){
     thing.display();
     thing.update();
@@ -23,8 +39,6 @@ void draw(){
 
  // System.out.println( str(meplayer.xspeed) +", " + str(meplayer.yspeed) );\
  
- 
- 
  meplayer.update();
   meplayer.display();
   meplayer.yspeed = meplayer.yspeed * .95;
@@ -35,6 +49,9 @@ void draw(){
   if (sqrt(meplayer.xspeed * meplayer.xspeed) < .1){
   meplayer.xspeed = 0;
   }
+  
+   
+
 }
 
 int speed = 5;
@@ -59,4 +76,6 @@ void keyPressed(){
   if (key == 'm'){
     thingList.add(new ThingCreated(meplayer.x + 8, meplayer.y));
   }
+  if (key == 'u'){
+  };
 };
