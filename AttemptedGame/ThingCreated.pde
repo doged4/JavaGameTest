@@ -1,9 +1,9 @@
-class ThingCreated{
+public class ThingCreated{
   float x,y;
  // void
   public ThingCreated(float _x, float _y){
-  x = _x;
-  y = _y;
+    x = _x;
+    y = _y;
   };
   void update() {
     y-=7;
