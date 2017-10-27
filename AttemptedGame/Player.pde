@@ -8,15 +8,21 @@ class Player {
     this.y = y;
     this.yspeed = yspeed;
     this.xspeed = xspeed;
-   // this.color = (random(0,255), random(0,255), random(0,255));
 
    }; 
    void update (){
-   this.x += xspeed;
-   this.y += yspeed;
+     this.x += xspeed;
+     this.y += yspeed;
+     meplayer.yspeed = meplayer.yspeed * .95;
+     meplayer.xspeed = meplayer.xspeed * .95;
+     if (sqrt(meplayer.yspeed * meplayer.yspeed) < .1){
+       meplayer.yspeed = 0;
+     } 
+     if (sqrt(meplayer.xspeed * meplayer.xspeed) < .1){
+      meplayer.xspeed = 0;
+     }
    }
    public void display(){
-   //fill(color);
    stroke(0,0,0);
    rect(this.x, this.y, 20, 20);
    }
