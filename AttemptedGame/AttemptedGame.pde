@@ -16,16 +16,17 @@ void setup(){
   System.out.println("INIT");
   int score = 0;
   hit = false;
+  meplayer.playerImage = loadImage("mainImage.png");
   for (int i = 1; i < 11; i++){
-  costumes.add(loadImage("invader"+ i+"A.png"));
-  costumes.add(loadImage("invader"+i+"B.png"));
-  }
-   for(int i = 0; i<5; i++){ 
-    for(int j = 0; j<10; j++){
-      enemylist.add(new Enemy( 0+(j*50), 40 + 40*i, costumes.get(10 - 2*i), costumes.get(11 - 2*i)));
-    };
-    enemySpeed = 1;
-   };
+    costumes.add(loadImage("invader"+ i+"A.png"));
+    costumes.add(loadImage("invader"+i+"B.png"));
+    }
+     for(int i = 0; i<5; i++){ 
+      for(int j = 0; j<10; j++){
+        enemylist.add(new Enemy( 0+(j*50), 40 + 40*i, costumes.get(10 - 2*i), costumes.get(11 - 2*i)));
+      };
+      enemySpeed = 1;
+     };
    
 };
 void draw(){
@@ -51,6 +52,7 @@ void draw(){
 
   thingCreated.display();
   thingCreated.update();
+System.out.println(meplayer.x);
 
   for(EnemyThing thing : thingList){ //<-- could inherticance be used here?
     thing.display();
@@ -61,10 +63,10 @@ void draw(){
     if(thing.y> meplayer.y 
        && thing.y< (meplayer.y + 20) 
        && thing.x> meplayer.x 
-       && thing.x< (meplayer.x + 20)
+       && thing.x< (meplayer.x + 50)
        && !hit){
        hit = true;
-       System.out.println("YOU HAVE BEEN HIT");
+      // System.out.println("YOU HAVE BEEN HIT");
        }
    }
    thingList.removeAll(deleteGroup);
@@ -74,7 +76,7 @@ void draw(){
     meplayer.update();
     meplayer.display();
   } else{
-   System.out.println("You are hit");
+ //  System.out.println("You are hit");
   }
 
   
@@ -88,12 +90,12 @@ void keyPressed(){
 if (!hit){
   if ((key == 'a' || keyCode == LEFT) && meplayer.x>100){
     meplayer.xspeed = -speed;
-    System.out.println("A Pressed");
+   // System.out.println("A Pressed");
   };
   
    if (key == 'w' || keyCode == UP){
     if(thingCreated.y < 0){
-     thingCreated.x = meplayer.x + 8;
+     thingCreated.x = meplayer.x + 22.5;
     thingCreated.y = meplayer.y;
     }
     //meplayer.yspeed = -speed;
@@ -103,12 +105,12 @@ if (!hit){
     meplayer.yspeed = speed;
   };*/
   if ((key == 'd' || keyCode == RIGHT) && meplayer.x<480){
-    System.out.println("D Pressed");
+  //  System.out.println("D Pressed");
     meplayer.xspeed = speed;
   };
   if (key == 'm'/* || keyCode == DOWN*/ && thingCreated.y < 0){
     //thingList.add(new ThingCreated(meplayer.x + 8, meplayer.y));
-    thingCreated.x = meplayer.x + 8;
+    thingCreated.x = meplayer.x + 22.5;
     thingCreated.y = meplayer.y;
     
   }
@@ -133,4 +135,21 @@ if (!hit){
       enemySpeed = 1;
    };
   }
+};
+
+void keyReleased(){
+  if ((key == 'a' || keyCode == LEFT)){
+    meplayer.xspeed = 0;
+  };
+  /*
+   if (key == 'w' || keyCode == UP){
+    meplayer.yspeed = 0;
+  };
+ 
+  if (key == 's' || keyCode == DOWN){
+    meplayer.yspeed = 0;
+  };*/
+  if ((key == 'd' || keyCode == RIGHT)){
+    meplayer.xspeed = 0;
+  };
 };
