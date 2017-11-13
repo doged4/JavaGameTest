@@ -1,4 +1,4 @@
-Player meplayer = new Player(550.0,550.0,0.0,0.0);
+Player meplayer = new Player(550.0,550.0,0.0);
 ArrayList<EnemyThing> thingList = new ArrayList<EnemyThing>();
 ArrayList<EnemyThing> deleteGroup = new ArrayList<EnemyThing>();
 
@@ -6,9 +6,9 @@ ArrayList<Enemy> deleteEnemies = new ArrayList<Enemy>();
 ArrayList<Enemy> enemylist = new ArrayList<Enemy>(); 
 
 ThingCreated thingCreated = new ThingCreated(-50,-50);
-ArrayList<PImage> costumes = new ArrayList<PImage>();  
+final ArrayList<PImage> costumes = new ArrayList<PImage>();  
 int score;
-float enemySpeed;
+final float enemySpeed=1;
 boolean hit;
 
 void setup(){
@@ -17,14 +17,14 @@ void setup(){
   int score = 0;
   hit = false;
   for (int i = 1; i < 11; i++){
-  costumes.add(loadImage("invader"+ i+"A.png"));
-  costumes.add(loadImage("invader"+i+"B.png"));
+    costumes.add(loadImage("invader"+ i+"A.png"));
+    costumes.add(loadImage("invader"+i+"B.png"));
   }
-   for(int i = 0; i<5; i++){ 
-    for(int j = 0; j<10; j++){
-      enemylist.add(new Enemy( 0+(j*50), 40 + 40*i, costumes.get(10 - 2*i), costumes.get(11 - 2*i)));
-    };
-    enemySpeed = 1;
+  for(int i = 0; i<5; i++){ 
+   for(int j = 0; j<10; j++){
+    enemylist.add(new Enemy( 0+(j*50), 40 + 40*i, costumes.get(10 - 2*i), costumes.get(11 - 2*i)));
+   };
+//   enemySpeed = 1;
    };
    
 };
@@ -36,7 +36,7 @@ void draw(){
      nowEnemy.update(/*enemySpeed + */ 1+ 10.0/ enemylist.size() );
      if(thingCreated.y> nowEnemy.y 
        && thingCreated.y< (nowEnemy.y + 60) 
-       && thingCreated.x> nowEnemy.x 
+       && thingCreated.x > nowEnemy.x 
        && thingCreated.x< (nowEnemy.x + 40)){
    
        deleteEnemies.add(nowEnemy);
@@ -88,7 +88,6 @@ void keyPressed(){
 if (!hit){
   if ((key == 'a' || keyCode == LEFT) && meplayer.x>100){
     meplayer.xspeed = -speed;
-    System.out.println("A Pressed");
   };
   
    if (key == 'w' || keyCode == UP){
@@ -96,18 +95,12 @@ if (!hit){
      thingCreated.x = meplayer.x + 8;
     thingCreated.y = meplayer.y;
     }
-    //meplayer.yspeed = -speed;
   };
-  /*
-  if (key == 's' || keyCode == DOWN){
-    meplayer.yspeed = speed;
-  };*/
+
   if ((key == 'd' || keyCode == RIGHT) && meplayer.x<480){
-    System.out.println("D Pressed");
     meplayer.xspeed = speed;
   };
   if (key == 'm'/* || keyCode == DOWN*/ && thingCreated.y < 0){
-    //thingList.add(new ThingCreated(meplayer.x + 8, meplayer.y));
     thingCreated.x = meplayer.x + 8;
     thingCreated.y = meplayer.y;
     
@@ -117,7 +110,6 @@ if (!hit){
   hit = false;
   };
   if(key == '®'){
-    System.out.println("INITA");
     int score = 0;
     hit = false;
   
@@ -130,7 +122,6 @@ if (!hit){
       for(int j = 0; j<10; j++){
       enemylist.add(new Enemy( 0+(j*50), 40 + 40*i, costumes.get(10 - 2*i), costumes.get(11 - 2*i)));
       };
-      enemySpeed = 1;
    };
   }
 };

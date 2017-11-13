@@ -5,13 +5,13 @@ public class ThingCreated{
     x = _x;
     y = _y;
   };
-  void update() {
+  private void update() {
     y-=7;
   /*  if (y<40){
       thingList.remove(this); //<<Breaks but not certain why 
     }; */
   };
-  void display() {
+ private void display() {
     rect(x,y,4,10);
   };
 }
