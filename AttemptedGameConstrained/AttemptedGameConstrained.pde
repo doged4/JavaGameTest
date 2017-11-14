@@ -1,4 +1,4 @@
-Player meplayer = new Player(550.0,550.0,0.0);
+Player meplayer = new Player(550.0,550.0,0.0,0.0);
 ArrayList<EnemyThing> thingList = new ArrayList<EnemyThing>();
 ArrayList<EnemyThing> deleteGroup = new ArrayList<EnemyThing>();
 
@@ -7,6 +7,7 @@ ArrayList<Enemy> enemylist = new ArrayList<Enemy>();
 
 ThingCreated thingCreated = new ThingCreated(-50,-50);
 final ArrayList<PImage> costumes = new ArrayList<PImage>();  
+//public PImage thingCostume1, thingCostume2;
 int score;
 final float enemySpeed=1;
 boolean hit;
@@ -16,6 +17,9 @@ void setup(){
   System.out.println("INIT");
   int score = 0;
   hit = false;
+//  thingCostume1=loadImage("enemyThing1.png");
+//  thingCostume2=loadImage("enemyThing2.png");
+  
   for (int i = 1; i < 11; i++){
     costumes.add(loadImage("invader"+ i+"A.png"));
     costumes.add(loadImage("invader"+i+"B.png"));
@@ -26,23 +30,34 @@ void setup(){
    };
 //   enemySpeed = 1;
    };
+  };
    
-};
 void draw(){
   background(0,0,0);
 
    for(Enemy nowEnemy : enemylist){
+     
      nowEnemy.display();
      nowEnemy.update(/*enemySpeed + */ 1+ 10.0/ enemylist.size() );
+     
+     //here!!
+    // if(nowEnemy.shot){
+    //   nowEnemy.shotCount +=1;
+     //}
+   //  if(nowEnemy.shotCount>5){
+     //  deleteEnemies.add(nowEnemy);
+     //}
+     
+     
      if(thingCreated.y> nowEnemy.y 
        && thingCreated.y< (nowEnemy.y + 60) 
        && thingCreated.x > nowEnemy.x 
        && thingCreated.x< (nowEnemy.x + 40)){
-   
-       deleteEnemies.add(nowEnemy);
+        deleteEnemies.add(nowEnemy); // delete later!!
+  //     nowEnemy.shot = true;
        score+=1;
        thingCreated.y = -10;
-       System.out.println("Collided");
+       System.out.println(score);
    
        }
       }
@@ -74,7 +89,7 @@ void draw(){
     meplayer.update();
     meplayer.display();
   } else{
-   System.out.println("You are hit");
+ //  System.out.println("You are hit");
   }
 
   

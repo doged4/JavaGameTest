@@ -7,7 +7,13 @@ public class EnemyThing extends ThingCreated{
   };
 
   private void display(){
-      rect(x,y,4,10); //<----SHOULD be inhereitted
-
+    rect(x,y,4,10); //<----SHOULD be inhereitted
+    /*if ((this.y % 140) <70){
+      image(thingCostume1,x,y,8,20);
+      
+    }else{
+      image(thingCostume2,x,y,8,20);
+    }*/
+ //   System.out.println(this.y % 10);
   };
-}
+};

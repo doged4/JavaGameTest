@@ -32,6 +32,7 @@ class Enemy{
     
     this.step+=speed;
     if(random(0,1)<0.001){
+
     thingList.add(new EnemyThing(this.x+22.5,this.y+15));
     
     }

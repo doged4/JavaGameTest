@@ -4,6 +4,7 @@ public class ThingCreated{
   public ThingCreated(float _x, float _y){
     x = _x;
     y = _y;
+      
   };
   private void update() {
     y-=7;
@@ -13,5 +14,7 @@ public class ThingCreated{
   };
  private void display() {
     rect(x,y,4,10);
+   
+   
   };
-}
+};

@@ -1,20 +1,23 @@
 class Player {
   float x,y;
-  float xspeed;
+  float xspeed, yspeed;
   
   
-  public Player(float x, float y, float xspeed){
+  public Player(float x, float y, float xspeed, float yspeed){
     this.x = x;
     this.y = y;
+    this.yspeed = yspeed;
     this.xspeed = xspeed;
 
    }; 
-   private void update (){
+   void update (){
      this.x += xspeed;
-    
-  
+     this.y += yspeed;
+     meplayer.yspeed = meplayer.yspeed * .95;
      meplayer.xspeed = meplayer.xspeed * .95;
-
+     if (sqrt(meplayer.yspeed * meplayer.yspeed) < .1){
+       meplayer.yspeed = 0;
+     } 
      if (sqrt(meplayer.xspeed * meplayer.xspeed) < .1){
       meplayer.xspeed = 0;
      }
